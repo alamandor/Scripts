@@ -1,0 +1,13 @@
+#!/bin/bash
+# Alec Greenaway
+# Script to download offline html version of supplied url
+
+if [[ $# -eq 0 ]]
+then
+	echo "Need to supply a URL"
+	exit 1
+fi
+
+wget -p -k $1
+
+

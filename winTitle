@@ -1,0 +1,4 @@
+#!/bin/bash
+
+## Script to get the name of the current window
+xprop -id $(xprop -root _NET_ACTIVE_WINDOW | cut -d ' ' -f 5) _NET_WM_NAME WM_CLASS | cut -d '"' -f -3 --complement | sed s/\"// | sed -r '/^\s*$/d'

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+rsync -ruLv  ~/Documents/dotfiles/ ~/.vim
+rsync -vu  ~/Documents/dotfiles/ ~/.config/aliasrc
+rsync -vu  ~/Documents/dotfiles/ ~/.config/shortcutrc
+rsync -vu  ~/Documents/dotfiles/ ~/.config/i3/config
+rsync -vu  ~/Documents/dotfiles/ ~/.profile
+rsync -vu  ~/Documents/dotfiles/ ~/.bashrc
+rsync -vu  ~/Documents/dotfiles/ ~/.bash_profile

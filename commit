@@ -1,0 +1,20 @@
+#!/bin/bash
+# Script to commit changes and push
+# https://stackoverflow.com/questions/8482843/git-commit-bash-script
+# Edited by Alec Greenaway
+
+if [ ! -d .git ]; then
+	echo "You don't seem to be in a git repo"
+	exit 1
+fi
+# Add current commits
+git add .
+
+# If theres no message provided, ask for it
+if [ $# -eq 0] ; then
+	read -p "Commit Message: " desc
+	git commit -m $desc
+else
+	git commit -m $1
+
+git push origin master

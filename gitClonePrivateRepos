@@ -1,0 +1,47 @@
+#!/usr/bin/python
+# Alec Greenaway
+# alecgreenaway1@gmail.com
+from github import Github
+import subprocess
+import sys
+
+# Need to have ssh access to github repos in order to work
+# AKA generated a ssh key and added it to github
+
+bashCommand = "git clone "
+username = "alecgreenaway1@gmail.com"
+pWord = "outrank-legume-limpness"
+
+
+if(len(sys.argv) < 2):
+    sys.exit("Provide path to clone repos as argument");
+
+
+clonePath = str(sys.argv[1])
+
+# Extra info if desired
+def printInfo(repo):
+    print("REPO NAME", repo.name,"MAIN LANGUAGE: ", repo.language)
+    print("SSH URL" , repo.ssh_url)
+    print("OWNER: ", repo.owner)
+    print("HTTP LINK: ", repo.clone_url)
+    return;
+
+cloneLinks = []
+
+g = Github(username,pWord)
+
+for repo in g.get_user().get_repos():
+    # printInfo(repo)
+    if repo.private and "alamandor" in str(repo.owner):
+        cloneLinks.append(repo.ssh_url)
+        print(repo.ssh_url);
+
+cmd = ""
+
+for link in cloneLinks:
+    cmd = bashCommand + link
+    process = subprocess.Popen(cmd, shell=True, cwd=clonePath)
+
+
+
