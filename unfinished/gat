@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# change file title top metadata title
+
+filename=$(basename -- $1)
+
+ext="${filename##*.}"
+
+trueTitle=$(exiftool $1 -title -p '$title' )
+
+testt=$(echo $trueTitle | tr ' ' '_' | tr '-' '_')
+
+newName=$testt.$ext
+
+
+ mv $1 $newName
+
+
