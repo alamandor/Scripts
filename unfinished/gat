@@ -2,17 +2,36 @@
 
 # change file title top metadata title
 
-filename=$(basename -- $1)
+# TODO
+# Use rename util instead of mv, can't get mv to work
+# The code aboce this to grab meta data works fine
+# Need to Trim the title grabbed from exiftool and remove spaces, ' , etc.. maybe use sed to do this.
+# Estasblish a naming convention that can be applied to all (Episode Number and title, No date)
 
-ext="${filename##*.}"
+for file in ~/Music/chapo/*;
+do
+	# Grabs Full path of file
+	filename=$(echo ${file%.*})
+ 	# Grabs just the extension
+	ext="${file##*.}"
+ 	# Grabs title according to MetaData
+	trueTitle=$(exiftool $file -title -p '$title' )
+	# Display Info Gathered
 
-trueTitle=$(exiftool $1 -title -p '$title' )
+	echo "FileName: $filename"
+	echo "Extension: $ext"
+	echo "Meta Title: $trueTitle"
+done
 
-testt=$(echo $trueTitle | tr ' ' '_' | tr '-' '_')
-
-newName=$testt.$ext
 
 
- mv $1 $newName
+# testt=$(echo $trueTitle | tr ' ' '_' | tr '-' '_')
+
+# newName=$testt.$ext
+
+# echo $newName
+
+
+
 
 
